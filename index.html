@@ -1,112 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO | PREMIUM OFFICIAL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CKRPRO | PREMIUM OFFICIAL</title>
 
-        /* Background Spiderman Image Fix */
-        .bg-img {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg'); /* */
-            background-repeat: no-repeat; background-position: center; background-size: cover;
-            z-index: -2; filter: brightness(0.7);
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        /* Animated Dark Blue Fire Particles */
-        #particles-js {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; pointer-events: none;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
 
-        /* Entry Screen (Music Fix) */
-        #overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999; display: flex;
-            justify-content: center; align-items: center; cursor: pointer; transition: 1s;
-        }
-        .enter-btn {
-            color: #0088ff; letter-spacing: 10px; font-size: 16px; padding: 15px 40px;
-            border: 1px solid #0088ff; background: transparent; text-transform: uppercase;
-        }
+html,body{
+height:100%;
+background:#000;
+font-family:sans-serif;
+overflow:hidden;
+}
 
-        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+/* Background Image FIXED */
+.bg-img{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:url("./background.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+filter:brightness(0.6);
+z-index:-2;
+}
 
-        /* Premium Single Box - No Glow */
-        .main-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            padding: 50px; border-radius: 20px;
-            display: flex; flex-direction: column; align-items: center; gap: 30px;
-        }
+/* particles layer */
+#particles-js{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+pointer-events:none;
+}
 
-        /* Profile Picture */
-        .profile-pic {
-            width: 85px; height: 85px; border-radius: 50%;
-            border: 1px solid rgba(0, 136, 255, 0.5); object-fit: cover;
-        }
+/* ENTER screen */
+#overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:1s;
+}
 
-        /* Smallest Social Icons */
-        .social-links { display: flex; gap: 40px; }
-        .social-links a { color: rgba(255, 255, 255, 0.5); font-size: 20px; transition: 0.3s; }
-        .social-links a:hover { color: #0088ff; transform: scale(1.1); }
-    </style>
+.enter-btn{
+color:#0088ff;
+letter-spacing:6px;
+font-size:16px;
+padding:14px 35px;
+border:1px solid #0088ff;
+background:transparent;
+}
+
+/* Main container */
+.container{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* Main card */
+.main-card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+padding:50px;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:30px;
+}
+
+/* profile */
+.profile-pic{
+width:85px;
+height:85px;
+border-radius:50%;
+border:1px solid rgba(0,136,255,0.5);
+object-fit:cover;
+}
+
+/* social icons */
+.social-links{
+display:flex;
+gap:40px;
+}
+
+.social-links a{
+color:rgba(255,255,255,0.6);
+font-size:20px;
+transition:0.3s;
+}
+
+.social-links a:hover{
+color:#0088ff;
+transform:scale(1.1);
+}
+</style>
 </head>
+
 <body>
 
-    <div id="overlay" onclick="startExperience()">
-        <div class="enter-btn">ENTER</div>
-    </div>
+<div id="overlay" onclick="startExperience()">
+<div class="enter-btn">ENTER</div>
+</div>
 
-    <div class="bg-img"></div>
-    <div id="particles-js"></div>
+<div class="bg-img"></div>
+<div id="particles-js"></div>
 
-    <div class="container">
-        <div class="main-card">
-            <img src="logo.jpg" alt="Logo" class="profile-pic">
+<div class="container">
+<div class="main-card">
 
-            <div class="social-links">
-                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
+<img src="./logo.jpg" class="profile-pic">
 
-    <audio id="audio" loop>
-        <source src="song.mp3" type="audio/mpeg">
-    </audio>
+<div class="social-links">
+<a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+<a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+<a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        function startExperience() {
-            // Audio Playback Activation
-            var music = document.getElementById('audio');
-            music.play().catch(function(error) {
-                console.log("Play failed:", error);
-            });
+</div>
+</div>
 
-            // UI Reveal
-            document.getElementById('overlay').style.opacity = '0';
-            setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 1000);
+<audio id="audio" loop>
+<source src="./song.mp3" type="audio/mpeg">
+</audio>
 
-            // Blue Fire Particles
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": { "value": 100 },
-                    "color": { "value": "#0088ff" },
-                    "shape": { "type": "circle" },
-                    "opacity": { "value": 0.5 },
-                    "size": { "value": 3 },
-                    "move": { "enable": true, "speed": 3, "direction": "top", "out_mode": "out" }
-                }
-            });
-        }
-    </script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+function startExperience(){
+
+var music=document.getElementById("audio");
+music.play();
+
+document.getElementById("overlay").style.opacity="0";
+
+setTimeout(()=>{
+document.getElementById("overlay").style.display="none";
+},800);
+
+/* particles */
+particlesJS("particles-js",{
+particles:{
+number:{value:80},
+color:{value:"#0088ff"},
+shape:{type:"circle"},
+opacity:{value:0.5},
+size:{value:3},
+move:{
+enable:true,
+speed:2,
+direction:"top",
+out_mode:"out"
+}
+}
+});
+
+}
+</script>
+
 </body>
 </html>
