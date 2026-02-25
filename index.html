@@ -3,98 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO</title>
+    <title>CKRPRO | PREMIUM OFFICIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            height: 100%; 
-            background: #000; 
-            overflow: hidden; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
 
-        /* Animated Aura Background */
-        .bg {
+        /* Background Spiderman Image Fix */
+        .bg-img {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('background.jpg') no-repeat center center/cover;
-            z-index: -1;
-            filter: brightness(0.4);
-            animation: auraEffect 10s infinite alternate;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg'); /* */
+            background-repeat: no-repeat; background-position: center; background-size: cover;
+            z-index: -2; filter: brightness(0.7);
         }
 
-        @keyframes auraEffect {
-            0% { transform: scale(1); filter: brightness(0.3) hue-rotate(0deg); }
-            100% { transform: scale(1.1); filter: brightness(0.5) hue-rotate(10deg); }
+        /* Animated Dark Blue Fire Particles */
+        #particles-js {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
         }
 
-        .container { text-align: center; }
+        /* Entry Screen (Music Fix) */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999; display: flex;
+            justify-content: center; align-items: center; cursor: pointer; transition: 1s;
+        }
+        .enter-btn {
+            color: #0088ff; letter-spacing: 10px; font-size: 16px; padding: 15px 40px;
+            border: 1px solid #0088ff; background: transparent; text-transform: uppercase;
+        }
 
-        /* Full Dark Profile with Glow */
+        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+
+        /* Premium Single Box - No Glow */
+        .main-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 50px; border-radius: 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 30px;
+        }
+
+        /* Profile Picture */
         .profile-pic {
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-            object-fit: cover;
-            margin-bottom: 30px;
-            animation: float 4s ease-in-out infinite;
+            width: 85px; height: 85px; border-radius: 50%;
+            border: 1px solid rgba(0, 136, 255, 0.5); object-fit: cover;
         }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-        /* Horizontal Icons (Clean UI) */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            color: #fff;
-            font-size: 35px;
-            text-decoration: none;
-            transition: 0.4s;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
-        }
-
-        .social-links a:hover {
-            transform: scale(1.2);
-            color: #ff0000; /* YouTube Red on Hover */
-        }
-
-        .social-links a.tiktok:hover { color: #00f2ea; } /* TikTok Cyan on Hover */
-
+        /* Smallest Social Icons */
+        .social-links { display: flex; gap: 40px; }
+        .social-links a { color: rgba(255, 255, 255, 0.5); font-size: 20px; transition: 0.3s; }
+        .social-links a:hover { color: #0088ff; transform: scale(1.1); }
     </style>
 </head>
 <body>
-    <div class="bg"></div>
+
+    <div id="overlay" onclick="startExperience()">
+        <div class="enter-btn">ENTER</div>
+    </div>
+
+    <div class="bg-img"></div>
+    <div id="particles-js"></div>
 
     <div class="container">
-        <img src="logo.jpg" alt="Profile" class="profile-pic">
+        <div class="main-card">
+            <img src="logo.jpg" alt="Logo" class="profile-pic">
 
-        <div class="social-links">
-            <a href="https://youtube.com/@ckrunknown" target="_blank" title="YouTube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tiktok" title="TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
+            <div class="social-links">
+                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
         </div>
     </div>
 
-    <audio id="player" loop>
+    <audio id="audio" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        document.body.addEventListener('click', function() {
-            document.getElementById('player').play();
-        }, { once: true });
+        function startExperience() {
+            // Audio Playback Activation
+            var music = document.getElementById('audio');
+            music.play().catch(function(error) {
+                console.log("Play failed:", error);
+            });
+
+            // UI Reveal
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 1000);
+
+            // Blue Fire Particles
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 100 },
+                    "color": { "value": "#0088ff" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5 },
+                    "size": { "value": 3 },
+                    "move": { "enable": true, "speed": 3, "direction": "top", "out_mode": "out" }
+                }
+            });
+        }
     </script>
 </body>
 </html>
