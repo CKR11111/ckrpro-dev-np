@@ -3,69 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO | PREMIUM</title>
+    <title>CKRPRO | OFFICIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Modern Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Inter', sans-serif; }
+        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Inter', sans-serif; color: white; }
 
-        /* Dark Blue Fire Particles Background */
+        /* Dark Blue Particle Background */
         #particles-js {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; background: #000;
+            z-index: -1; background: radial-gradient(circle at center, #001a33 0%, #000000 100%);
         }
 
-        /* Background Image Fix (If you have background.jpg) */
+        /* Background Image Spiderman - Balanced Visibility */
         .bg-img {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('background.jpg') no-repeat center; background-size: cover;
-            z-index: -2; filter: brightness(0.4);
+            background: url('1000058853.jpg') no-repeat center;
+            background-size: cover; z-index: -2; opacity: 0.5;
+            filter: brightness(0.6) contrast(1.1);
         }
 
-        /* Entry Screen */
+        /* Premium Enter Screen */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 9999; display: flex;
-            justify-content: center; align-items: center; cursor: pointer; transition: 1.2s;
+            justify-content: center; align-items: center; cursor: pointer; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .enter-btn {
-            color: #fff; letter-spacing: 8px; font-size: 13px; padding: 12px 30px;
-            border: 1px solid rgba(255,255,255,0.3); background: transparent; text-transform: uppercase;
+            color: #ffffff; letter-spacing: 12px; font-size: 14px; padding: 18px 45px;
+            border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05);
+            text-transform: uppercase; border-radius: 2px; transition: 0.4s;
         }
+        .enter-btn:hover { background: #fff; color: #000; letter-spacing: 15px; }
 
-        .container {
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100vh;
-        }
+        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
 
-        /* Single Clean Box - No Glow */
+        /* Single Premium Card - NO GLOW */
         .main-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 50px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px; /* Spacing between logo and icons */
-            box-shadow: none; /* Removed Glow */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 60px 50px; border-radius: 30px;
+            display: flex; flex-direction: column; align-items: center;
+            width: 280px; transition: 0.5s;
         }
 
-        /* Profile Pic - No Glow */
+        /* Profile Picture */
         .profile-pic {
-            width: 80px; height: 80px; border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            object-fit: cover;
+            width: 90px; height: 90px; border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            object-fit: cover; margin-bottom: 40px;
         }
 
-        /* Small Icons - Flat & Clean */
-        .social-links { display: flex; gap: 40px; }
+        /* Tiny Minimal Icons */
+        .social-links { display: flex; gap: 35px; align-items: center; }
         .social-links a {
-            color: rgba(255, 255, 255, 0.4); font-size: 20px;
-            text-decoration: none; transition: 0.3s;
+            color: rgba(255, 255, 255, 0.4); font-size: 22px;
+            text-decoration: none; transition: 0.3s ease;
         }
-        .social-links a:hover { color: #fff; transform: translateY(-2px); }
+        .social-links a:hover { color: #00aaff; transform: translateY(-3px); }
 
     </style>
 </head>
@@ -81,7 +78,7 @@
     <div class="container">
         <div class="main-card">
             <img src="logo.jpg" alt="Logo" class="profile-pic">
-            
+
             <div class="social-links">
                 <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
@@ -97,30 +94,27 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         function startApp() {
-            document.getElementById('audio').play();
+            // Play Music
+            const music = document.getElementById('audio');
+            music.play().catch(e => console.log("Music error"));
+
+            // Animation
             const ov = document.getElementById('overlay');
             ov.style.opacity = '0';
-            setTimeout(() => { ov.style.display = 'none'; }, 1000);
-            
-            // Dark Blue Fire Particles
+            ov.style.transform = 'scale(1.1)';
+            setTimeout(() => { ov.style.display = 'none'; }, 1200);
+
+            // Dark Blue Fire Particles (Minimal & Smooth)
             particlesJS("particles-js", {
                 "particles": {
                     "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": "#0055ff" }, // Dark Blue
+                    "color": { "value": "#00aaff" },
                     "shape": { "type": "circle" },
-                    "opacity": { "value": 0.6, "random": true },
-                    "size": { "value": 2.5, "random": true },
+                    "opacity": { "value": 0.4, "random": true },
+                    "size": { "value": 2, "random": true },
                     "line_linked": { "enable": false },
-                    "move": {
-                        "enable": true,
-                        "speed": 2.5,
-                        "direction": "top", // Fire effect direction
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out"
-                    }
-                },
-                "retina_detect": true
+                    "move": { "enable": true, "speed": 2, "direction": "top", "random": true, "out_mode": "out" }
+                }
             });
         }
     </script>
