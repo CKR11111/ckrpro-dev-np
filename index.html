@@ -12,32 +12,32 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-height:100%;
+body{
 background:#000;
 font-family:sans-serif;
 overflow:hidden;
 }
 
-/* Background Image FIXED */
-.bg-img{
+/* BACKGROUND IMAGE (100% WORKING) */
+.bg{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background-image:url("./background.jpg");
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-filter:brightness(0.6);
 z-index:-2;
 }
 
-/* particles layer */
+.bg img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(0.6);
+}
+
+/* particles */
 #particles-js{
 position:fixed;
 top:0;
@@ -48,7 +48,7 @@ z-index:-1;
 pointer-events:none;
 }
 
-/* ENTER screen */
+/* enter screen */
 #overlay{
 position:fixed;
 top:0;
@@ -57,30 +57,28 @@ width:100%;
 height:100%;
 background:#000;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 z-index:9999;
 transition:1s;
 }
 
 .enter-btn{
 color:#0088ff;
-letter-spacing:6px;
-font-size:16px;
-padding:14px 35px;
 border:1px solid #0088ff;
-background:transparent;
+padding:15px 40px;
+letter-spacing:6px;
 }
 
-/* Main container */
+/* container */
 .container{
 height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 }
 
-/* Main card */
+/* card */
 .main-card{
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.1);
@@ -93,25 +91,25 @@ align-items:center;
 gap:30px;
 }
 
-/* profile */
+/* logo */
 .profile-pic{
 width:85px;
 height:85px;
 border-radius:50%;
-border:1px solid rgba(0,136,255,0.5);
+border:1px solid #0088ff;
 object-fit:cover;
 }
 
-/* social icons */
+/* social */
 .social-links{
 display:flex;
 gap:40px;
 }
 
 .social-links a{
-color:rgba(255,255,255,0.6);
+color:#aaa;
 font-size:20px;
-transition:0.3s;
+transition:.3s;
 }
 
 .social-links a:hover{
@@ -123,17 +121,21 @@ transform:scale(1.1);
 
 <body>
 
-<div id="overlay" onclick="startExperience()">
-<div class="enter-btn">ENTER</div>
+<!-- BACKGROUND -->
+<div class="bg">
+<img src="background.jpg">
 </div>
 
-<div class="bg-img"></div>
 <div id="particles-js"></div>
+
+<div id="overlay" onclick="startSite()">
+<div class="enter-btn">ENTER</div>
+</div>
 
 <div class="container">
 <div class="main-card">
 
-<img src="./logo.jpg" class="profile-pic">
+<img src="logo.jpg" class="profile-pic">
 
 <div class="social-links">
 <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
@@ -145,24 +147,21 @@ transform:scale(1.1);
 </div>
 
 <audio id="audio" loop>
-<source src="./song.mp3" type="audio/mpeg">
+<source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <script>
-function startExperience(){
+function startSite(){
 
-var music=document.getElementById("audio");
-music.play();
+document.getElementById("audio").play();
 
 document.getElementById("overlay").style.opacity="0";
-
 setTimeout(()=>{
 document.getElementById("overlay").style.display="none";
 },800);
 
-/* particles */
 particlesJS("particles-js",{
 particles:{
 number:{value:80},
