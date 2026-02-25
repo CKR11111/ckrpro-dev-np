@@ -7,42 +7,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; background: #000; font-family: sans-serif; overflow: hidden; }
+        body, html { height: 100%; background: #000; font-family: 'Inter', sans-serif; overflow: hidden; color: white; }
 
-        /* Background Fix */
+        /* Background Fix & High Animation */
         .bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('background.jpg') no-repeat center center/cover;
-            z-index: -1; filter: brightness(0.3);
-            animation: auraScale 10s infinite alternate;
+            /* background.jpg नै राख्ने तर filter सच्याइएको छ */
+            background: url('background.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1; 
+            filter: brightness(0.4); /* अलि धेरै उज्यालो बनाइएको */
+            animation: auraAnimation 10s infinite alternate ease-in-out;
         }
-        @keyframes auraScale { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
 
-        /* Automatic Music Enter Screen */
-        #enter-screen {
+        @keyframes auraAnimation {
+            0% { transform: scale(1) rotate(0deg); filter: brightness(0.4) contrast(1); }
+            100% { transform: scale(1.1) rotate(1deg); filter: brightness(0.6) contrast(1.2); }
+        }
+
+        /* Full Screen Overlay */
+        #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 9999; display: flex;
             justify-content: center; align-items: center;
-            cursor: pointer; color: white; letter-spacing: 5px; font-size: 14px;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 10px;
+            font-size: 14px; transition: 1.5s ease;
         }
 
         .container {
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; height: 100vh;
+            position: relative;
         }
 
-        /* Clean Profile Logo */
-        .profile-img {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-            margin-bottom: 40px;
+        /* Profile with Glow Animation */
+        .profile-pic {
+            width: 110px; height: 110px; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 40px rgba(0,255,0,0.1);
+            margin-bottom: 40px; 
+            animation: float 4s infinite ease-in-out;
+            object-fit: cover;
         }
 
-        /* Horizontal Mini Icons */
-        .links { display: flex; gap: 40px; }
-        .links a { color: rgba(255,255,255,0.7); font-size: 28px; transition: 0.4s; }
-        .links a:hover { transform: scale(1.3); color: #fff; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* Social Icons */
+        .social-links { display: flex; gap: 45px; }
+        .social-links a {
+            color: rgba(255,255,255,0.7); font-size: 30px;
+            text-decoration: none; transition: 0.5s ease;
+        }
+
+        .social-links a:hover { transform: scale(1.3); color: #fff; filter: drop-shadow(0 0 15px #fff); }
         .yt:hover { color: #ff0000 !important; }
         .tt:hover { color: #00f2ea !important; }
         .wa:hover { color: #25d366 !important; }
@@ -51,28 +68,36 @@
 </head>
 <body>
 
-    <div id="enter-screen" onclick="startApp()"> ENTER </div>
+    <div id="overlay" onclick="startExperience()">
+          ENTER  
+    </div>
 
     <div class="bg"></div>
 
     <div class="container">
-        <img src="logo.jpg" alt="Logo" class="profile-img">
-        
-        <div class="links">
+        <img src="logo.jpg" alt="CKR" class="profile-pic">
+
+        <div class="social-links">
             <a href="https://youtube.com/@ckrunknown" target="_blank" class="yt"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tt"><i class="fa-brands fa-tiktok"></i></a>
             <a href="https://wa.me/9840825493" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </div>
 
-    <audio id="bg-audio" loop>
+    <audio id="audio" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function startApp() {
-            document.getElementById('bg-audio').play();
-            document.getElementById('enter-screen').style.display = 'none';
+        function startExperience() {
+            const audio = document.getElementById('audio');
+            audio.play();
+            
+            const overlay = document.getElementById('overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1000);
         }
     </script>
 </body>
