@@ -66,11 +66,11 @@ justify-content:center;
 align-items:center;
 }
 
-/* card */
+/* card with slightly increased blur */
 .main-card{
-background:rgba(255,255,255,0.02); /* very light blur */
+background:rgba(255,255,255,0.02); /* very light transparency */
 border:1px solid rgba(255,255,255,0.05);
-backdrop-filter:blur(3px); /* very light blur */
+backdrop-filter:blur(6px); /* slightly increased blur */
 padding:45px;
 border-radius:20px;
 display:flex;
@@ -87,13 +87,14 @@ border-radius:50%;
 border:1px solid #0088ff;
 object-fit:cover;
 transition:0.15s;
+/* glow removed */
 }
 
 /* social */
 .social-links{
 display:flex;
 gap:30px;
-margin-top:40px; /* moved further down from profile */
+margin-top:40px; /* profile bottom spacing */
 }
 
 .social-links a{
@@ -138,56 +139,12 @@ transform:scale(1.1);
 </audio>
 
 <script>
-let audioCtx;
-let analyser;
-let dataArray;
-
 function startSite(){
-
-const audio=document.getElementById("audio");
-audio.play();
-
-const AudioContext=window.AudioContext||window.webkitAudioContext;
-audioCtx=new AudioContext();
-
-const source=audioCtx.createMediaElementSource(audio);
-analyser=audioCtx.createAnalyser();
-
-source.connect(analyser);
-analyser.connect(audioCtx.destination);
-
-analyser.fftSize=256;
-dataArray=new Uint8Array(analyser.frequencyBinCount);
-
-animateGlow();
-
+document.getElementById("audio").play();
 document.getElementById("overlay").style.opacity="0";
 setTimeout(()=>{
 document.getElementById("overlay").style.display="none";
 },800);
-
-}
-
-/* Music matching glow */
-function animateGlow(){
-requestAnimationFrame(animateGlow);
-
-analyser.getByteFrequencyData(dataArray);
-
-let sum=0;
-for(let i=0;i<dataArray.length;i++){
-sum+=dataArray[i];
-}
-
-let avg=sum/dataArray.length;
-
-const profile=document.getElementById("profile");
-
-let scale=1+(avg/650);
-let glow=avg/7;
-
-profile.style.transform=`scale(${scale})`;
-profile.style.boxShadow=`0 0 ${glow}px #0088ff`;
 }
 </script>
 
