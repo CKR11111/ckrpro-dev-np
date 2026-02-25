@@ -3,109 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO | OFFICIAL</title>
+    <title>CKRPRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
-
-        /* Background Fix: Ensure filename is exactly correct */
-        #bg-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('1000058853.jpg'); 
-            background-size: cover; background-position: center; z-index: -2;
-            filter: brightness(0.6);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body, html { 
+            height: 100%; 
+            background: #000; 
+            overflow: hidden; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
         }
 
-        /* Particles Layer */
-        #particles-js {
+        /* Animated Aura Background */
+        .bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('background.jpg') no-repeat center center/cover;
             z-index: -1;
+            filter: brightness(0.4);
+            animation: auraEffect 10s infinite alternate;
         }
 
-        /* Premium Overlay */
-        #overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999; display: flex;
-            justify-content: center; align-items: center; cursor: pointer; transition: 1.2s;
-        }
-        .enter-btn {
-            color: #00aaff; letter-spacing: 10px; font-size: 15px; padding: 15px 40px;
-            border: 1px solid rgba(0, 170, 255, 0.4); background: rgba(0,0,0,0.8);
-            border-radius: 4px; text-transform: uppercase;
+        @keyframes auraEffect {
+            0% { transform: scale(1); filter: brightness(0.3) hue-rotate(0deg); }
+            100% { transform: scale(1.1); filter: brightness(0.5) hue-rotate(10deg); }
         }
 
-        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        .container { text-align: center; }
 
-        /* Final Professional Box */
-        .main-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 50px 40px; border-radius: 24px;
-            display: flex; flex-direction: column; align-items: center; gap: 35px;
-            width: 280px; text-align: center;
-        }
-
+        /* Full Dark Profile with Glow */
         .profile-pic {
-            width: 85px; height: 85px; border-radius: 50%;
-            border: 1px solid rgba(0, 170, 255, 0.5); object-fit: cover;
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+            object-fit: cover;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
         }
 
-        .social-links { display: flex; gap: 40px; }
-        .social-links a { color: rgba(255, 255, 255, 0.4); font-size: 22px; transition: 0.3s; }
-        .social-links a:hover { color: #00aaff; transform: translateY(-5px); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Horizontal Icons (Clean UI) */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 35px;
+            text-decoration: none;
+            transition: 0.4s;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #ff0000; /* YouTube Red on Hover */
+        }
+
+        .social-links a.tiktok:hover { color: #00f2ea; } /* TikTok Cyan on Hover */
 
     </style>
 </head>
 <body>
-
-    <div id="overlay" onclick="initExperience()">
-        <div class="enter-btn">ENTER</div>
-    </div>
-
-    <div id="bg-canvas"></div>
-    <div id="particles-js"></div>
+    <div class="bg"></div>
 
     <div class="container">
-        <div class="main-card">
-            <img src="logo.jpg" alt="Logo" class="profile-pic">
-            <div class="social-links">
-                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
+        <img src="logo.jpg" alt="Profile" class="profile-pic">
+
+        <div class="social-links">
+            <a href="https://youtube.com/@ckrunknown" target="_blank" title="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tiktok" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
         </div>
     </div>
 
-    <audio id="audio" loop>
+    <audio id="player" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        function initExperience() {
-            // Audio Play Fix
-            const music = document.getElementById('audio');
-            music.volume = 0.5;
-            music.play().catch(e => console.log("Audio Error:", e));
-
-            // Overlay Fade
-            const ov = document.getElementById('overlay');
-            ov.style.opacity = '0';
-            setTimeout(() => { ov.style.display = 'none'; }, 1000);
-
-            // Fire Particles (Blue)
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": { "value": 100 },
-                    "color": { "value": "#00aaff" },
-                    "opacity": { "value": 0.5 },
-                    "size": { "value": 3 },
-                    "move": { "enable": true, "speed": 3, "direction": "top", "out_mode": "out" }
-                }
-            });
-        }
+        document.body.addEventListener('click', function() {
+            document.getElementById('player').play();
+        }, { once: true });
     </script>
 </body>
 </html>
