@@ -3,98 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO</title>
+    <title>CKRPRO PREMIUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            height: 100%; 
-            background: #000; 
-            overflow: hidden; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
+        body, html { height: 100%; background: #000; font-family: 'Inter', sans-serif; overflow: hidden; color: white; }
 
-        /* Animated Aura Background */
+        /* Background with Animated Aura */
         .bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('background.jpg') no-repeat center center/cover;
-            z-index: -1;
-            filter: brightness(0.4);
-            animation: auraEffect 10s infinite alternate;
+            z-index: -1; filter: brightness(0.25);
+            animation: pulse 15s infinite alternate;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+
+        /* Automatic Music Trigger Overlay */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999; display: flex;
+            justify-content: center; align-items: center;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 8px;
+            font-size: 12px; transition: 1.5s ease;
         }
 
-        @keyframes auraEffect {
-            0% { transform: scale(1); filter: brightness(0.3) hue-rotate(0deg); }
-            100% { transform: scale(1.1); filter: brightness(0.5) hue-rotate(10deg); }
+        .container {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; height: 100vh;
         }
 
-        .container { text-align: center; }
-
-        /* Full Dark Profile with Glow */
+        /* Clean Profile */
         .profile-pic {
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-            object-fit: cover;
-            margin-bottom: 30px;
-            animation: float 4s ease-in-out infinite;
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+            margin-bottom: 30px; animation: float 5s infinite ease-in-out;
         }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-        /* Horizontal Icons (Clean UI) */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 10px;
-        }
-
+        /* Horizontal Mini Icons */
+        .social-links { display: flex; gap: 40px; }
         .social-links a {
-            color: #fff;
-            font-size: 35px;
-            text-decoration: none;
-            transition: 0.4s;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+            color: rgba(255,255,255,0.6); font-size: 22px;
+            text-decoration: none; transition: 0.5s;
         }
 
-        .social-links a:hover {
-            transform: scale(1.2);
-            color: #ff0000; /* YouTube Red on Hover */
-        }
-
-        .social-links a.tiktok:hover { color: #00f2ea; } /* TikTok Cyan on Hover */
+        .social-links a:hover { transform: translateY(-5px); color: #fff; filter: drop-shadow(0 0 10px #fff); }
+        .yt:hover { color: #ff0000 !important; }
+        .tt:hover { color: #00f2ea !important; }
+        .wa:hover { color: #25d366 !important; }
 
     </style>
 </head>
 <body>
+
+    <div id="overlay" onclick="startExperience()">
+          ENTER  
+    </div>
+
     <div class="bg"></div>
 
     <div class="container">
-        <img src="logo.jpg" alt="Profile" class="profile-pic">
+        <img src="logo.jpg" alt="CKR" class="profile-pic">
 
         <div class="social-links">
-            <a href="https://youtube.com/@ckrunknown" target="_blank" title="YouTube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tiktok" title="TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
+            <a href="https://youtube.com/@ckrunknown" target="_blank" class="yt"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tt"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://wa.me/9840825493" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </div>
 
-    <audio id="player" loop>
+    <audio id="audio" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        document.body.addEventListener('click', function() {
-            document.getElementById('player').play();
-        }, { once: true });
+        function startExperience() {
+            const audio = document.getElementById('audio');
+            audio.play().catch(e => console.log("Audio play failed", e));
+            
+            const overlay = document.getElementById('overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1500);
+        }
     </script>
 </body>
 </html>
