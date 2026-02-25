@@ -3,100 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO PREMIUM</title>
+    <title>CKRPRO | OFFICIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; background: #000; font-family: 'Inter', sans-serif; overflow: hidden; color: white; }
+        /* Base Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Segoe UI', Roboto, sans-serif; }
 
-        /* Background Fix & High Animation */
+        /* Final Spiderman Background Animation */
         .bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* background.jpg नै राख्ने तर filter सच्याइएको छ */
-            background: url('background.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('background.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
             background-size: cover;
-            z-index: -1; 
-            filter: brightness(0.4); /* अलि धेरै उज्यालो बनाइएको */
-            animation: auraAnimation 10s infinite alternate ease-in-out;
+            z-index: -1;
+            filter: brightness(0.85); /* Optimized for Spiderman visibility */
+            animation: slowAura 20s infinite alternate ease-in-out;
         }
 
-        @keyframes auraAnimation {
-            0% { transform: scale(1) rotate(0deg); filter: brightness(0.4) contrast(1); }
-            100% { transform: scale(1.1) rotate(1deg); filter: brightness(0.6) contrast(1.2); }
+        @keyframes slowAura {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.07); }
         }
 
-        /* Full Screen Overlay */
+        /* High Visibility Enter Screen */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 9999; display: flex;
             justify-content: center; align-items: center;
-            cursor: pointer; text-transform: uppercase; letter-spacing: 10px;
-            font-size: 14px; transition: 1.5s ease;
+            cursor: pointer; transition: 1s ease-in-out;
+        }
+        
+        .enter-btn {
+            color: #ffffff; 
+            letter-spacing: 10px; 
+            font-size: 15px; 
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 12px 35px;
+            border: 1px solid rgba(255,255,255,0.5); /* Clear Visible Border */
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+            50% { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.15); }
         }
 
         .container {
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; height: 100vh;
-            position: relative;
         }
 
-        /* Profile with Glow Animation */
+        /* Profile Logo - Perfectly Balanced Position */
         .profile-pic {
-            width: 110px; height: 110px; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.4);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 40px rgba(0,255,0,0.1);
-            margin-bottom: 40px; 
-            animation: float 4s infinite ease-in-out;
+            width: 75px; height: 75px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
             object-fit: cover;
+            margin-bottom: 120px; /* Space for background art */
+            margin-top: -50px; /* Slightly up from center */
         }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-
-        /* Social Icons */
-        .social-links { display: flex; gap: 45px; }
+        /* Clean Flat Social Icons - NO GLOW */
+        .social-links { display: flex; gap: 50px; }
         .social-links a {
-            color: rgba(255,255,255,0.7); font-size: 30px;
-            text-decoration: none; transition: 0.5s ease;
+            color: rgba(255,255,255,0.45); font-size: 26px;
+            text-decoration: none; transition: 0.3s ease;
+            filter: none !important; text-shadow: none !important;
         }
 
-        .social-links a:hover { transform: scale(1.3); color: #fff; filter: drop-shadow(0 0 15px #fff); }
-        .yt:hover { color: #ff0000 !important; }
-        .tt:hover { color: #00f2ea !important; }
-        .wa:hover { color: #25d366 !important; }
+        /* Hover Effect: Just White, No Glow */
+        .social-links a:hover {
+            color: #ffffff !important;
+            transform: translateY(-4px);
+            filter: none !important;
+            text-shadow: none !important;
+        }
 
     </style>
 </head>
 <body>
 
     <div id="overlay" onclick="startExperience()">
-          ENTER  
+        <div class="enter-btn">ENTER</div>
     </div>
 
     <div class="bg"></div>
 
     <div class="container">
-        <img src="logo.jpg" alt="CKR" class="profile-pic">
+        <img src="logo.jpg" alt="Logo" class="profile-pic">
 
         <div class="social-links">
-            <a href="https://youtube.com/@ckrunknown" target="_blank" class="yt"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tt"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://wa.me/9840825493" target="_blank" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </div>
 
-    <audio id="audio" loop>
+    <audio id="audio" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         function startExperience() {
-            const audio = document.getElementById('audio');
-            audio.play();
+            var audio = document.getElementById('audio');
+            audio.play().catch(function(e) { console.log("Audio error", e); });
             
-            const overlay = document.getElementById('overlay');
+            var overlay = document.getElementById('overlay');
             overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
+            setTimeout(function() { 
+                overlay.style.display = 'none'; 
             }, 1000);
         }
     </script>
