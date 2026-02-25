@@ -3,45 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO | OFFICIAL</title>
+    <title>CKRPRO | PREMIUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
+        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Inter', sans-serif; }
 
-        /* Background Fix - Ensure this matches your filename exactly */
-        .bg {
+        /* Dark Blue Fire Particles Background */
+        #particles-js {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('background.jpg'); /* GitHub ma 'background.jpg' नै हुनुपर्छ */
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            z-index: -1;
-            filter: brightness(0.8);
-            animation: slowAura 20s infinite alternate linear;
+            z-index: -1; background: #000;
         }
 
-        @keyframes slowAura {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
+        /* Background Image Fix (If you have background.jpg) */
+        .bg-img {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('background.jpg') no-repeat center; background-size: cover;
+            z-index: -2; filter: brightness(0.4);
         }
 
-        /* Highly Visible Enter Button */
+        /* Entry Screen */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 9999; display: flex;
-            justify-content: center; align-items: center;
-            cursor: pointer; transition: 1s ease;
+            justify-content: center; align-items: center; cursor: pointer; transition: 1.2s;
         }
-        
         .enter-btn {
-            color: #fff; 
-            letter-spacing: 10px; 
-            font-size: 14px; 
-            padding: 12px 30px;
-            border: 1px solid rgba(255,255,255,0.6);
-            background: rgba(255,255,255,0.1);
-            text-transform: uppercase;
+            color: #fff; letter-spacing: 8px; font-size: 13px; padding: 12px 30px;
+            border: 1px solid rgba(255,255,255,0.3); background: transparent; text-transform: uppercase;
         }
 
         .container {
@@ -49,62 +38,90 @@
             justify-content: center; height: 100vh;
         }
 
-        /* Profile Logo - Your current size is maintained */
+        /* Single Clean Box - No Glow */
+        .main-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 50px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px; /* Spacing between logo and icons */
+            box-shadow: none; /* Removed Glow */
+        }
+
+        /* Profile Pic - No Glow */
         .profile-pic {
-            width: 75px; height: 75px; border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.2);
+            width: 80px; height: 80px; border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             object-fit: cover;
-            margin-bottom: 120px; 
-            margin-top: -40px;
         }
 
-        /* Tiny Social Media Logos - Extra Small as requested */
-        .social-links { display: flex; gap: 45px; }
+        /* Small Icons - Flat & Clean */
+        .social-links { display: flex; gap: 40px; }
         .social-links a {
-            color: rgba(255,255,255,0.5); 
-            font-size: 20px; /* Logo size sano banाइएको */
-            text-decoration: none; 
-            transition: 0.3s;
-            filter: none !important;
-            text-shadow: none !important;
+            color: rgba(255, 255, 255, 0.4); font-size: 20px;
+            text-decoration: none; transition: 0.3s;
         }
-
-        .social-links a:hover {
-            color: #fff !important;
-            transform: scale(1.1);
-        }
+        .social-links a:hover { color: #fff; transform: translateY(-2px); }
 
     </style>
 </head>
 <body>
 
-    <div id="overlay" onclick="startExperience()">
+    <div id="overlay" onclick="startApp()">
         <div class="enter-btn">ENTER</div>
     </div>
 
-    <div class="bg"></div>
+    <div class="bg-img"></div>
+    <div id="particles-js"></div>
 
     <div class="container">
-        <img src="logo.jpg" alt="Logo" class="profile-pic">
-
-        <div class="social-links">
-            <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="main-card">
+            <img src="logo.jpg" alt="Logo" class="profile-pic">
+            
+            <div class="social-links">
+                <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
         </div>
     </div>
 
-    <audio id="audio" loop preload="auto">
+    <audio id="audio" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        function startExperience() {
-            var audio = document.getElementById('audio');
-            audio.play();
-            var overlay = document.getElementById('overlay');
-            overlay.style.opacity = '0';
-            setTimeout(function() { overlay.style.display = 'none'; }, 1000);
+        function startApp() {
+            document.getElementById('audio').play();
+            const ov = document.getElementById('overlay');
+            ov.style.opacity = '0';
+            setTimeout(() => { ov.style.display = 'none'; }, 1000);
+            
+            // Dark Blue Fire Particles
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#0055ff" }, // Dark Blue
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.6, "random": true },
+                    "size": { "value": 2.5, "random": true },
+                    "line_linked": { "enable": false },
+                    "move": {
+                        "enable": true,
+                        "speed": 2.5,
+                        "direction": "top", // Fire effect direction
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out"
+                    }
+                },
+                "retina_detect": true
+            });
         }
     </script>
 </body>
