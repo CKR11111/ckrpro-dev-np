@@ -1,74 +1,99 @@
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKRPRO ULTIMATE</title>
+    <title>CKRPRO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #000; color: white; overflow: hidden; }
         
-        /* Background Animated Aura */
-        .bg-container {
+        body, html { 
+            height: 100%; 
+            background: #000; 
+            overflow: hidden; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        /* Animated Aura Background */
+        .bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('background.jpg') no-repeat center center/cover;
-            z-index: -1; animation: auraMove 8s infinite alternate;
-        }
-        @keyframes auraMove {
-            0% { filter: brightness(0.5) contrast(1.2); transform: scale(1); }
-            100% { filter: brightness(0.8) contrast(1.5); transform: scale(1.1); }
+            z-index: -1;
+            filter: brightness(0.4);
+            animation: auraEffect 10s infinite alternate;
         }
 
-        .main {
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100vh; backdrop-filter: blur(3px);
+        @keyframes auraEffect {
+            0% { transform: scale(1); filter: brightness(0.3) hue-rotate(0deg); }
+            100% { transform: scale(1.1); filter: brightness(0.5) hue-rotate(10deg); }
         }
 
-        /* Logo Animation */
-        .logo-img {
-            width: 160px; height: 160px; border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.8);
-            box-shadow: 0 0 30px #fff, 0 0 50px #00ff00;
-            animation: float 4s ease-in-out infinite;
+        .container { text-align: center; }
+
+        /* Full Dark Profile with Glow */
+        .profile-pic {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
             object-fit: cover;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
         }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-        h1 { font-size: 3rem; margin: 20px 0; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 15px #fff; }
-        .subtitle { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; font-style: italic; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        .links-container { display: flex; flex-direction: column; gap: 20px; width: 300px; }
-        .link-card {
-            padding: 15px; text-align: center; border: 2px solid #fff;
-            text-decoration: none; color: #fff; border-radius: 50px;
-            background: rgba(255,255,255,0.1); transition: 0.4s;
-            font-weight: bold; text-transform: uppercase;
+        /* Horizontal Icons (Clean UI) */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 10px;
         }
-        .link-card:hover { background: #fff; color: #000; transform: scale(1.1); box-shadow: 0 0 20px #fff; }
+
+        .social-links a {
+            color: #fff;
+            font-size: 35px;
+            text-decoration: none;
+            transition: 0.4s;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #ff0000; /* YouTube Red on Hover */
+        }
+
+        .social-links a.tiktok:hover { color: #00f2ea; } /* TikTok Cyan on Hover */
+
     </style>
 </head>
 <body>
-    <div class="bg-container"></div>
-    <div class="main">
-        <img src="logo.jpg" alt="CKRPRO" class="logo-img">
-        <h1>CKRPRO ULTIMATE</h1>
-        <p class="subtitle">Gojo x Sukuna | Unknown Unknown</p>
+    <div class="bg"></div>
 
-        <div class="links-container">
-            <a href="https://youtube.com/ckrunknown" target="_blank" class="link-card">YouTube</a>
-            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="link-card">TikTok</a>
+    <div class="container">
+        <img src="logo.jpg" alt="Profile" class="profile-pic">
+
+        <div class="social-links">
+            <a href="https://youtube.com/@ckrunknown" target="_blank" title="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://tiktok.com/@ckrunknown" target="_blank" class="tiktok" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
         </div>
     </div>
 
-    <audio id="myAudio" loop>
+    <audio id="player" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Automatic Music Play after first click
         document.body.addEventListener('click', function() {
-            var audio = document.getElementById('myAudio');
-            audio.play();
+            document.getElementById('player').play();
         }, { once: true });
     </script>
 </body>
