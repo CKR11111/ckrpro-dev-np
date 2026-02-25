@@ -6,51 +6,42 @@
     <title>CKRPRO | OFFICIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Base Styling */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body, html { height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
 
-        /* Final Spiderman Background Animation */
+        /* Background Fix - Ensure this matches your filename exactly */
         .bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('background.jpg');
+            background-image: url('background.jpg'); /* GitHub ma 'background.jpg' नै हुनुपर्छ */
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
             z-index: -1;
-            filter: brightness(0.85); /* Optimized for Spiderman visibility */
-            animation: slowAura 20s infinite alternate ease-in-out;
+            filter: brightness(0.8);
+            animation: slowAura 20s infinite alternate linear;
         }
 
         @keyframes slowAura {
             0% { transform: scale(1); }
-            100% { transform: scale(1.07); }
+            100% { transform: scale(1.08); }
         }
 
-        /* High Visibility Enter Screen */
+        /* Highly Visible Enter Button */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 9999; display: flex;
             justify-content: center; align-items: center;
-            cursor: pointer; transition: 1s ease-in-out;
+            cursor: pointer; transition: 1s ease;
         }
         
         .enter-btn {
-            color: #ffffff; 
+            color: #fff; 
             letter-spacing: 10px; 
-            font-size: 15px; 
-            font-weight: 500;
-            text-transform: uppercase;
-            padding: 12px 35px;
-            border: 1px solid rgba(255,255,255,0.5); /* Clear Visible Border */
+            font-size: 14px; 
+            padding: 12px 30px;
+            border: 1px solid rgba(255,255,255,0.6);
             background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            animation: pulseGlow 2.5s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
-            50% { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.15); }
+            text-transform: uppercase;
         }
 
         .container {
@@ -58,29 +49,29 @@
             justify-content: center; height: 100vh;
         }
 
-        /* Profile Logo - Perfectly Balanced Position */
+        /* Profile Logo - Your current size is maintained */
         .profile-pic {
             width: 75px; height: 75px; border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
             object-fit: cover;
-            margin-bottom: 120px; /* Space for background art */
-            margin-top: -50px; /* Slightly up from center */
+            margin-bottom: 120px; 
+            margin-top: -40px;
         }
 
-        /* Clean Flat Social Icons - NO GLOW */
-        .social-links { display: flex; gap: 50px; }
+        /* Tiny Social Media Logos - Extra Small as requested */
+        .social-links { display: flex; gap: 45px; }
         .social-links a {
-            color: rgba(255,255,255,0.45); font-size: 26px;
-            text-decoration: none; transition: 0.3s ease;
-            filter: none !important; text-shadow: none !important;
-        }
-
-        /* Hover Effect: Just White, No Glow */
-        .social-links a:hover {
-            color: #ffffff !important;
-            transform: translateY(-4px);
+            color: rgba(255,255,255,0.5); 
+            font-size: 20px; /* Logo size sano banाइएको */
+            text-decoration: none; 
+            transition: 0.3s;
             filter: none !important;
             text-shadow: none !important;
+        }
+
+        .social-links a:hover {
+            color: #fff !important;
+            transform: scale(1.1);
         }
 
     </style>
@@ -110,13 +101,10 @@
     <script>
         function startExperience() {
             var audio = document.getElementById('audio');
-            audio.play().catch(function(e) { console.log("Audio error", e); });
-            
+            audio.play();
             var overlay = document.getElementById('overlay');
             overlay.style.opacity = '0';
-            setTimeout(function() { 
-                overlay.style.display = 'none'; 
-            }, 1000);
+            setTimeout(function() { overlay.style.display = 'none'; }, 1000);
         }
     </script>
 </body>
