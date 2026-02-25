@@ -6,81 +6,72 @@
     <title>CKRPRO | OFFICIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Modern Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Inter', sans-serif; color: white; }
+        body, html { height: 100%; background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
 
-        /* Dark Blue Particle Background */
+        /* Background Fix: Ensure filename is exactly correct */
+        #bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('1000058853.jpg'); 
+            background-size: cover; background-position: center; z-index: -2;
+            filter: brightness(0.6);
+        }
+
+        /* Particles Layer */
         #particles-js {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; background: radial-gradient(circle at center, #001a33 0%, #000000 100%);
+            z-index: -1;
         }
 
-        /* Background Image Spiderman - Balanced Visibility */
-        .bg-img {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('1000058853.jpg') no-repeat center;
-            background-size: cover; z-index: -2; opacity: 0.5;
-            filter: brightness(0.6) contrast(1.1);
-        }
-
-        /* Premium Enter Screen */
+        /* Premium Overlay */
         #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 9999; display: flex;
-            justify-content: center; align-items: center; cursor: pointer; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            justify-content: center; align-items: center; cursor: pointer; transition: 1.2s;
         }
         .enter-btn {
-            color: #ffffff; letter-spacing: 12px; font-size: 14px; padding: 18px 45px;
-            border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05);
-            text-transform: uppercase; border-radius: 2px; transition: 0.4s;
+            color: #00aaff; letter-spacing: 10px; font-size: 15px; padding: 15px 40px;
+            border: 1px solid rgba(0, 170, 255, 0.4); background: rgba(0,0,0,0.8);
+            border-radius: 4px; text-transform: uppercase;
         }
-        .enter-btn:hover { background: #fff; color: #000; letter-spacing: 15px; }
 
         .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
 
-        /* Single Premium Card - NO GLOW */
+        /* Final Professional Box */
         .main-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
-            padding: 60px 50px; border-radius: 30px;
-            display: flex; flex-direction: column; align-items: center;
-            width: 280px; transition: 0.5s;
+            padding: 50px 40px; border-radius: 24px;
+            display: flex; flex-direction: column; align-items: center; gap: 35px;
+            width: 280px; text-align: center;
         }
 
-        /* Profile Picture */
         .profile-pic {
-            width: 90px; height: 90px; border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            object-fit: cover; margin-bottom: 40px;
+            width: 85px; height: 85px; border-radius: 50%;
+            border: 1px solid rgba(0, 170, 255, 0.5); object-fit: cover;
         }
 
-        /* Tiny Minimal Icons */
-        .social-links { display: flex; gap: 35px; align-items: center; }
-        .social-links a {
-            color: rgba(255, 255, 255, 0.4); font-size: 22px;
-            text-decoration: none; transition: 0.3s ease;
-        }
-        .social-links a:hover { color: #00aaff; transform: translateY(-3px); }
+        .social-links { display: flex; gap: 40px; }
+        .social-links a { color: rgba(255, 255, 255, 0.4); font-size: 22px; transition: 0.3s; }
+        .social-links a:hover { color: #00aaff; transform: translateY(-5px); }
 
     </style>
 </head>
 <body>
 
-    <div id="overlay" onclick="startApp()">
+    <div id="overlay" onclick="initExperience()">
         <div class="enter-btn">ENTER</div>
     </div>
 
-    <div class="bg-img"></div>
+    <div id="bg-canvas"></div>
     <div id="particles-js"></div>
 
     <div class="container">
         <div class="main-card">
             <img src="logo.jpg" alt="Logo" class="profile-pic">
-
             <div class="social-links">
-                <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
                 <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
@@ -93,27 +84,25 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        function startApp() {
-            // Play Music
+        function initExperience() {
+            // Audio Play Fix
             const music = document.getElementById('audio');
-            music.play().catch(e => console.log("Music error"));
+            music.volume = 0.5;
+            music.play().catch(e => console.log("Audio Error:", e));
 
-            // Animation
+            // Overlay Fade
             const ov = document.getElementById('overlay');
             ov.style.opacity = '0';
-            ov.style.transform = 'scale(1.1)';
-            setTimeout(() => { ov.style.display = 'none'; }, 1200);
+            setTimeout(() => { ov.style.display = 'none'; }, 1000);
 
-            // Dark Blue Fire Particles (Minimal & Smooth)
+            // Fire Particles (Blue)
             particlesJS("particles-js", {
                 "particles": {
-                    "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                    "number": { "value": 100 },
                     "color": { "value": "#00aaff" },
-                    "shape": { "type": "circle" },
-                    "opacity": { "value": 0.4, "random": true },
-                    "size": { "value": 2, "random": true },
-                    "line_linked": { "enable": false },
-                    "move": { "enable": true, "speed": 2, "direction": "top", "random": true, "out_mode": "out" }
+                    "opacity": { "value": 0.5 },
+                    "size": { "value": 3 },
+                    "move": { "enable": true, "speed": 3, "direction": "top", "out_mode": "out" }
                 }
             });
         }
