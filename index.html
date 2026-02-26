@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ckrpro dev | mahendra sunar</title>
+<title>CKRPRO</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Teko:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,32 +19,31 @@ box-sizing:border-box;
 
 body{
 background:#000;
-font-family:sans-serif;
+font-family:'Poppins',sans-serif;
 overflow:hidden;
 }
 
-/* BACKGROUND IMAGE */
-.bg{
+/* VIDEO BACKGROUND */
+.bg-video{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
 z-index:-2;
+overflow:hidden;
 }
 
-.bg img{
+.bg-video video{
 width:100%;
 height:100%;
 object-fit:cover;
-filter:brightness(0.6);
+filter:brightness(0.55);
 }
 
-/* enter screen */
+/* ENTER SCREEN */
 #overlay{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:#000;
@@ -58,7 +60,7 @@ font-size:14px;
 letter-spacing:4px;
 }
 
-/* container */
+/* CENTER */
 .container{
 height:100vh;
 display:flex;
@@ -66,64 +68,90 @@ justify-content:center;
 align-items:center;
 }
 
-/* card with slightly increased blur */
+/* MAIN CARD */
 .main-card{
-background:rgba(255,255,255,0.02); /* very light transparency */
-border:1px solid rgba(255,255,255,0.05);
-backdrop-filter:blur(6px); /* slightly increased blur */
-padding:45px;
-border-radius:20px;
+position:relative;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(7px);
+padding:90px 95px;
+border-radius:24px;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:15px;
 }
 
-/* profile */
+/* PROFILE */
 .profile-pic{
-width:85px;
-height:85px;
+width:100px;
+height:100px;
 border-radius:50%;
-border:1px solid #0088ff;
 object-fit:cover;
-transition:0.15s;
-/* glow removed */
 }
 
-/* social */
+/* NAME (adjusted smaller) */
+.name{
+margin-top:12px;
+font-size:18px;
+letter-spacing:3px;
+font-family:'Teko',sans-serif;
+color:#fff;
+}
+
+/* SOCIAL */
 .social-links{
 display:flex;
-gap:30px;
-margin-top:40px; /* profile bottom spacing */
+gap:50px;
+margin-top:55px;
 }
 
 .social-links a{
 color:#aaa;
-font-size:20px;
+font-size:22px;
 transition:.3s;
 }
 
 .social-links a:hover{
-color:#0088ff;
+color:#fff;
 transform:scale(1.1);
+}
+
+/* VIEW COUNTER */
+.views{
+position:absolute;
+bottom:18px;
+left:22px;
+font-size:14px;
+color:#cfcfcf;
+display:flex;
+align-items:center;
+gap:8px;
+opacity:0.9;
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg">
-<img src="background.jpg">
+<!-- VIDEO BACKGROUND -->
+<div class="bg-video">
+<video autoplay muted loop playsinline>
+<source src="bg.mp4" type="video/mp4">
+</video>
 </div>
 
+<!-- ENTER SCREEN -->
 <div id="overlay" onclick="startSite()">
 <div class="enter-btn">ENTER</div>
 </div>
 
+<!-- MAIN -->
 <div class="container">
 <div class="main-card">
 
-<img src="logo.jpg" id="profile" class="profile-pic">
+<img src="logo.jpg" class="profile-pic">
+
+<div class="name">CKR UNKNOWN</div>
 
 <div class="social-links">
 <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
@@ -131,11 +159,17 @@ transform:scale(1.1);
 <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 
+<div class="views">
+<i class="fa-solid fa-eye"></i>
+<span id="visits">0</span>
+</div>
+
 </div>
 </div>
 
+<!-- MUSIC -->
 <audio id="audio" loop>
-<source src="song.mp3" type="audio/mpeg">
+<source src="song.mp3">
 </audio>
 
 <script>
@@ -144,8 +178,21 @@ document.getElementById("audio").play();
 document.getElementById("overlay").style.opacity="0";
 setTimeout(()=>{
 document.getElementById("overlay").style.display="none";
-},800);
+},700);
 }
+
+/* VISIT COUNTER */
+let count = localStorage.getItem("ckr_visits");
+
+if(!count){
+count = 1;
+localStorage.setItem("ckr_visits", count);
+}else{
+count = parseInt(count) + 1;
+localStorage.setItem("ckr_visits", count);
+}
+
+document.getElementById("visits").innerText = count;
 </script>
 
 </body>
