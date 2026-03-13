@@ -6,193 +6,196 @@
 <title>CKRPRO</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Teko:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-background:#000;
-font-family:'Poppins',sans-serif;
-overflow:hidden;
+    background:#000;
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
 }
 
 /* VIDEO BACKGROUND */
 .bg-video{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-2;
-overflow:hidden;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    overflow:hidden;
 }
 
 .bg-video video{
-width:100%;
-height:100%;
-object-fit:cover;
-filter:brightness(0.55);
+    width:100%;    height:100%;
+    object-fit:cover;
+    filter:brightness(0.4) contrast(1.2);
 }
 
 /* ENTER SCREEN */
 #overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-transition:1s;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    transition:1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .enter-btn{
-color:#fff;
-font-size:14px;
-letter-spacing:4px;
-}
-
-/* CENTER */
-.container{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+    color:#fff;
+    font-size:16px;
+    letter-spacing:6px;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.8);
 }
 
 /* MAIN CARD */
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
 .main-card{
-position:relative;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(7px);
-padding:90px 95px;
-border-radius:24px;
-display:flex;
-flex-direction:column;
-align-items:center;
+    position:relative;
+    background:rgba(0, 10, 30, 0.4); /* Dark blue mix */
+    border:1px solid rgba(0, 150, 255, 0.2);
+    backdrop-filter:blur(12px);
+    padding:60px 80px;
+    border-radius:30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 150, 255, 0.1);
 }
 
 /* PROFILE */
 .profile-pic{
-width:100px;
-height:100px;
-border-radius:50%;
-object-fit:cover;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border: 2px solid rgba(0, 150, 255, 0.5);
+    padding: 3px;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.3);
 }
 
-/* NAME (adjusted smaller) */
+/* NAME */
 .name{
-margin-top:12px;
-font-size:18px;
-letter-spacing:3px;
-font-family:'Teko',sans-serif;
-color:#fff;
+    margin-top:15px;
+    font-size:22px;
+    letter-spacing:4px;
+    font-family:'Teko',sans-serif;
+    color:#fff;
+    text-transform: uppercase;
 }
 
-/* SOCIAL */
+/* SOCIAL & ANDROID ICON */
 .social-links{
-display:flex;
-gap:50px;
-margin-top:55px;
+    display:flex;
+    gap:40px;
+    margin-top:40px;
+    align-items: center;
 }
 
 .social-links a{
-color:#aaa;
-font-size:22px;
-transition:.3s;
+    color:#888;
+    font-size:24px;
+    transition:.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
 }
 
+/* Neon Glow on Hover */
 .social-links a:hover{
-color:#fff;
-transform:scale(1.1);
+    color:#00a2ff;
+    transform: translateY(-5px) scale(1.2);
+    text-shadow: 0 0 15px rgba(0, 162, 255, 0.8);
 }
 
 /* VIEW COUNTER */
 .views{
-position:absolute;
-bottom:18px;
-left:22px;
-font-size:14px;
-color:#cfcfcf;
-display:flex;
-align-items:center;
-gap:8px;
-opacity:0.9;
+    position:absolute;
+    bottom:20px;
+    left:25px;
+    font-size:13px;
+    color:rgba(255, 255, 255, 0.6);
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.views i {
+    color: #00a2ff;
 }
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO BACKGROUND -->
 <div class="bg-video">
-<video autoplay muted loop playsinline>
-<source src="bg.mp4" type="video/mp4">
-</video>
+    <video autoplay muted loop playsinline>
+        <source src="bg.mp4" type="video/mp4">
+    </video>
 </div>
 
-<!-- ENTER SCREEN -->
 <div id="overlay" onclick="startSite()">
-<div class="enter-btn">ENTER</div>
+    <div class="enter-btn">ENTER</div>
 </div>
 
-<!-- MAIN -->
 <div class="container">
-<div class="main-card">
+    <div class="main-card">
+        
+        <img src="logo.jpg" class="profile-pic" alt="CKRPRO">
 
-<img src="logo.jpg" class="profile-pic">
+        <div class="name">CKR UNKNOWN</div>
 
-<div class="name">CKR UNKNOWN</div>
+        <div class="social-links">
+            <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            
+            <a href="https://link-share-8g7q.onrender.com" target="_blank"><i class="fa-brands fa-android"></i></a>
+            
+            <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            
+            <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
 
-<div class="social-links">
-<a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-<a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-<a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="views">
+            <i class="fa-solid fa-eye"></i>
+            <span id="visits">0</span>
+        </div>
+
+    </div>
 </div>
 
-<div class="views">
-<i class="fa-solid fa-eye"></i>
-<span id="visits">0</span>
-</div>
-
-</div>
-</div>
-
-<!-- MUSIC -->
 <audio id="audio" loop>
-<source src="song.mp3">
+    <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function startSite(){
-document.getElementById("audio").play();
-document.getElementById("overlay").style.opacity="0";
-setTimeout(()=>{
-document.getElementById("overlay").style.display="none";
-},700);
+    document.getElementById("audio").play().catch(e => console.log("Audio play blocked"));
+    document.getElementById("overlay").style.opacity="0";
+    setTimeout(()=>{
+        document.getElementById("overlay").style.display="none";
+    },800);
 }
 
 /* VISIT COUNTER */
-let count = localStorage.getItem("ckr_visits");
-
-if(!count){
-count = 1;
-localStorage.setItem("ckr_visits", count);
-}else{
+let count = localStorage.getItem("ckr_visits") || 0;
 count = parseInt(count) + 1;
 localStorage.setItem("ckr_visits", count);
-}
-
-document.getElementById("visits").innerText = count;
+document.getElementById("visits").innerText = count.toLocaleString();
 </script>
 
 </body>
