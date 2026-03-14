@@ -1,202 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CKRPRO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKRPRO | Official</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Teko:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Teko:wght@500&display=swap" rel="stylesheet">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-    background:#000;
-    font-family:'Poppins',sans-serif;
-    overflow:hidden;
-}
+        body {
+            background: #000;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            color: #fff;
+        }
 
-/* VIDEO BACKGROUND */
-.bg-video{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-2;
-    overflow:hidden;
-}
+        /* Background Video */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
 
-.bg-video video{
-    width:100%;    height:100%;
-    object-fit:cover;
-    filter:brightness(0.4) contrast(1.2);
-}
+        .bg-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3) grayscale(0.2);
+        }
 
-/* ENTER SCREEN */
-#overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-    transition:1s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        /* Overlay / Enter Screen */
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: 0.8s ease-in-out;
+            cursor: pointer;
+        }
 
-.enter-btn{
-    color:#fff;
-    font-size:16px;
-    letter-spacing:6px;
-    cursor: pointer;
-    text-shadow: 0 0 10px rgba(0, 150, 255, 0.8);
-}
+        .enter-btn {
+            font-size: 14px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
 
-/* MAIN CARD */
-.container{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; text-shadow: 0 0 15px #00a2ff; }
+            100% { opacity: 0.5; }
+        }
 
-.main-card{
-    position:relative;
-    background:rgba(0, 10, 30, 0.4); /* Dark blue mix */
-    border:1px solid rgba(0, 150, 255, 0.2);
-    backdrop-filter:blur(12px);
-    padding:60px 80px;
-    border-radius:30px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 150, 255, 0.1);
-}
+        /* Main Container */
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-/* PROFILE */
-.profile-pic{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    object-fit:cover;
-    border: 2px solid rgba(0, 150, 255, 0.5);
-    padding: 3px;
-    box-shadow: 0 0 15px rgba(0, 150, 255, 0.3);
-}
+        .main-card {
+            width: 100%;
+            max-width: 300px; /* Thikka ko Compact Size */
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 25px 15px; /* Ghataeko Padding */
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-/* NAME */
-.name{
-    margin-top:15px;
-    font-size:22px;
-    letter-spacing:4px;
-    font-family:'Teko',sans-serif;
-    color:#fff;
-    text-transform: uppercase;
-}
+        .main-card:hover {
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            transform: translateY(-5px);
+        }
 
-/* SOCIAL & ANDROID ICON */
-.social-links{
-    display:flex;
-    gap:40px;
-    margin-top:40px;
-    align-items: center;
-}
+        /* Profile Section */
+        .profile-pic {
+            width: 80px; /* Thikka ko Sano Size */
+            height: 80px; /* Thikka ko Sano Size */
+            border-radius: 50%; /* GOLO BANAAUNE */
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 2px solid #00a2ff;
+            padding: 4px; /* Golo border vitra space */
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.2);
+            display: inline-block; /* Centering ko lagi support */
+        }
 
-.social-links a{
-    color:#888;
-    font-size:24px;
-    transition:.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    text-decoration: none;
-}
+        .name {
+            font-family: 'Teko', sans-serif;
+            font-size: 26px; /* Halka Sano */
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+            color: #fff;
+        }
 
-/* Neon Glow on Hover */
-.social-links a:hover{
-    color:#00a2ff;
-    transform: translateY(-5px) scale(1.2);
-    text-shadow: 0 0 15px rgba(0, 162, 255, 0.8);
-}
+        .tagline {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 25px;
+        }
 
-/* VIEW COUNTER */
-.views{
-    position:absolute;
-    bottom:20px;
-    left:25px;
-    font-size:13px;
-    color:rgba(255, 255, 255, 0.6);
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
+        /* Social Icons */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Tight spacing */
+            margin-bottom: 5px;
+        }
 
-.views i {
-    color: #00a2ff;
-}
-</style>
+        .social-links a {
+            color: #fff;
+            font-size: 18px; /* Halka Sano Icons */
+            transition: 0.3s;
+            opacity: 0.7;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            color: #00a2ff;
+            transform: scale(1.15);
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+        }
+
+        /* Footer Info */
+        .footer-info {
+            margin-top: 25px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-info i {
+            font-size: 9px;
+            color: #00a2ff;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="bg-video">
-    <video autoplay muted loop playsinline>
-        <source src="bg.mp4" type="video/mp4">
-    </video>
-</div>
-
-<div id="overlay" onclick="startSite()">
-    <div class="enter-btn">ENTER</div>
-</div>
-
-<div class="container">
-    <div class="main-card">
-        
-        <img src="logo.jpg" class="profile-pic" alt="CKRPRO">
-
-        <div class="name">CKR UNKNOWN</div>
-
-        <div class="social-links">
-            <a href="https://youtube.com/@ckrunknown" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            
-            <a href="https://link-share-8g7q.onrender.com" target="_blank"><i class="fa-brands fa-android"></i></a>
-            
-            <a href="https://tiktok.com/@ckrunknown" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            
-            <a href="https://wa.me/9840825493" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-
-        <div class="views">
-            <i class="fa-solid fa-eye"></i>
-            <span id="visits">0</span>
-        </div>
-
+    <div class="bg-video">
+        <video id="vbg" muted loop playsinline>
+            <source src="bg.mp4" type="video/mp4">
+        </video>
     </div>
-</div>
 
-<audio id="audio" loop>
-    <source src="song.mp3" type="audio/mpeg">
-</audio>
+    <div id="overlay" onclick="startSite()">
+        <div class="enter-btn">Tap to Enter</div>
+    </div>
 
-<script>
-function startSite(){
-    document.getElementById("audio").play().catch(e => console.log("Audio play blocked"));
-    document.getElementById("overlay").style.opacity="0";
-    setTimeout(()=>{
-        document.getElementById("overlay").style.display="none";
-    },800);
-}
+    <div class="container">
+        <div class="main-card">
+            <img src="logo.jpg" class="profile-pic" alt="CKRPRO Logo">
+            
+            <h1 class="name">CKR UNKNOWN</h1>
+            <p class="tagline">Digital Creator</p>
 
-/* VISIT COUNTER */
-let count = localStorage.getItem("ckr_visits") || 0;
-count = parseInt(count) + 1;
-localStorage.setItem("ckr_visits", count);
-document.getElementById("visits").innerText = count.toLocaleString();
-</script>
+            <div class="social-links">
+                <a href="https://youtube.com/@ckrunknown" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://link-share-8g7q.onrender.com" target="_blank" title="Download Android App"><i class="fa-brands fa-android"></i></a>
+                <a href="https://tiktok.com/@ckrunknown" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/9840825493" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+
+            <div class="footer-info">
+                <i class="fa-solid fa-eye"></i>
+                <span id="visits">0</span> Views
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function startSite(){
+            const audio = document.getElementById("audio");
+            const video = document.getElementById("vbg");
+            
+            // Play media - try to ensure video plays even if audio is blocked
+            video.play();
+            audio.play().catch(e => console.log("Audio auto-play blocked by browser. This is normal."));
+
+            // Hide overlay
+            const overlay = document.getElementById("overlay");
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 800);
+        }
+
+        // Simple Visit Counter using localStorage
+        try {
+            let count = parseInt(localStorage.getItem("ckr_visits") || "0");
+            count++;
+            localStorage.setItem("ckr_visits", count);
+            document.getElementById("visits").innerText = count.toLocaleString();
+        } catch (e) {
+            console.warn("localStorage is not available, visit count will not persist.");
+        }
+    </script>
 
 </body>
 </html>
